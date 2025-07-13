@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASCII Value Finder</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+    }
+    input {
+      width: 100px;
+      font-size: 16px;
+    }
+    button {
+      font-size: 16px;
+    }
+    #asciiResult {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Find ASCII Value</h2>
+  <input type="text" id="charInput" maxlength="1" placeholder="Enter a char">
+  <button id="asciiButton">Get ASCII</button>
+  <p id="asciiResult"></p>
+
+  <script>
+    const charInput = document.getElementById('charInput');
+    const asciiButton = document.getElementById('asciiButton');
+    const result = document.getElementById('asciiResult');
+
+    function getAsciiValue() {
+      const char = charInput.value.trim();
+
+      if (char.length === 0) {
+        result.textContent = "Please enter a character.";
+        result.style.color = "red";
+      } else {
+        const ascii = char.charCodeAt(0);
+        result.textContent = `The ASCII value of '${char}' is ${ascii}.`;
+        result.style.color = "green";
+      }
+
+      charInput.focus();
+    }
+
+    asciiButton.addEventListener('click', getAsciiValue);
+
+    // Trigger on Enter key
+    charInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        getAsciiValue();
+      }
+    });
+  </script>
+
+</body>
+</html>
